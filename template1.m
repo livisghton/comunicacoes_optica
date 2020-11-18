@@ -68,15 +68,15 @@ MrkSz=16;
 
 LnWdth=2;
 figure(1);
-plot(time/1e-12,(abs(u0).^2)/1e-3,’LineWidth’,LnWdth,’MarkerSize’,MrkSz);
+plot(time/1e-12,(abs(u0).^2)/1e-3,'LineWidth',LnWdth,'MarkerSize',MrkSz);
 hold on;
 % Propagating through the fiber
 u=splitstep(u0,L,stepsize,attenuation,beta2,omega,gama);
 figure(1)
-plot(time/1e-12,(abs(u).^2)/1e-3,’rx’,’LineWidth’,LnWdth,’MarkerSize’,MrkSz);
-set(gca,’linewidth’,3,’fontsize’,26);
-xlabel(’Time [ps]’,’FontSize’,30);
-ylabel(’Power [mW]’,’FontSize’,30);
+plot(time/1e-12,(abs(u).^2)/1e-3,'rx','LineWidth',LnWdth,'MarkerSize',MrkSz);
+set(gca,'linewidth',3,'fontsize',26);
+xlabel('Time [ps]','FontSize',30);
+ylabel('Power [mW]','FontSize',30);
 % 3D-plot
 u=u0;
 U=u0;
@@ -87,12 +87,12 @@ U=[U;u];
 end
 figure(2);
 h=waterfall(time/1e-12,(0:size(U,1)-1)*L_step/1e3,abs(U).^2/1e-3);
-set(gca,’linewidth’,3,’fontsize’,26);
-set(h,’LineWidth’,LnWdth);
-xlabel(’Time [ps]’,’FontSize’,30);
-ylabel(’Distance [Km]’,’FontSize’,30);
-zlabel(’Power [mW]’,’FontSize’,30);
+set(gca,'linewidth',3,'fontsize',26);
+set(h,'LineWidth',LnWdth);
+xlabel('Time [ps]','FontSize',30);
+ylabel('Distance [Km]','FontSize',30);
+zlabel('Power [mW]','FontSize',30);
 axis([time(1)/1e-12 time(end)/1e-12 0 J*L_step/1e3 ...
 0 max(max((abs(U).^2)./1e-3)) 15 16]);
-set(gca,’YDir’,’reverse’);
+set(gca,'YDir','reverse');
 etime(clock,tempo)

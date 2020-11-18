@@ -1,0 +1,3 @@
+https://github.com/jeovazero/split-step-fourier-method-python
+
+https://www.mathworks.com/matlabcentral/fileexchange/14915-split-step-fourier-method
