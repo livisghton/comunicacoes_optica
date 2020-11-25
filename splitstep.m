@@ -65,7 +65,7 @@ function y = splitstep(u0, L, stepsize, attenuation, beta2, omega, gamma)
     phadisp(ln)=dd;%saving pulse phase
     ln=ln+1;
   endfor
-  y = f
+  y = op_pulse;
   
   
 endfunction
