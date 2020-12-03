@@ -36,10 +36,10 @@ L = 80e3;
 %
 %
 %
-Parameter for GVD [s^2/m]
-Nonlinear parameter[1/(W*m)]
-Attenuation [dB/m]
-Fiber Length [m]
+%Parameter for GVD [s^2/m]
+%Nonlinear parameter[1/(W*m)]
+%Attenuation attenuation [dB/m]
+%Fiber Length [m]
 % Dispersion Compensating Fiber (DCF)
 beta2_dcf = 131.88e-27;
 % GVD Parameter [s^2/m]
@@ -63,7 +63,7 @@ for j=1:Nb
 u0( (j-1)*samples+1:j*samples )=p*a0(j);
 end
 
-P0=u0*u0’/length(u0);
+P0=u0*u0'/length(u0);
 %--------------------------------------------------------------------------
 %-----------------------------General System Parameters--------------------
 %-----------------------------Post-Compensation--------------------------
@@ -131,7 +131,7 @@ U_hyb=[u_hyb];
 % Post-Compensation--------------------------------------------------------
 j=1;
 while j<=max_sections
-disp(sprintf(’Post-Comp. Span: %g Pdcf: %g dBm Pssmf: %g dBm’,...
+disp(sprintf('Post-Comp. Span: %g Pdcf: %g dBm Pssmf: %g dBm',...
 j,10*log10(Pdcf_pos/1e-3),(10*log10(Pssmf_pos/1e-3))));
 % Fiber SSMF
 u_pos=splitstep(u_pos,L,stepsize_pos,attenuation,beta2,omega,gama);
@@ -151,7 +151,7 @@ end
 % Pre-Compensation---------------------------------------------------------
 j=1;
 while j<=max_sections
-disp(sprintf(’Pre-Comp. Span: %g Pdcf: %g dBm Pssmf: %g dBm’, ...
+disp(sprintf('Pre-Comp. Span: %g Pdcf: %g dBm Pssmf: %g dBm', ...
 j,10*log10(Pdcf_pre/1e-3),(10*log10(Pssmf_pre/1e-3))));
 % Optical Amplifier
 Gain=Pdcf_pre*exp(attenuation*L)/Pssmf_pre;
@@ -172,7 +172,7 @@ end
 % Hybrid-Compensation------------------------------------------------------
 j=1;
 while j<=max_sections
-disp(sprintf(’Hybrid-C. Span: %g Pdcf: %g dBm Pssmf: %g dBm’, ...
+disp(sprintf('Hybrid-C. Span: %g Pdcf: %g dBm Pssmf: %g dBm', ...
 j,10*log10(Pdcf_hyb/1e-3),(10*log10(Pssmf_hyb/1e-3))));
 % Fiber DCF/2
 u_hyb=splitstep(u_hyb,L_dcf/2,stepsize_dcf_hyb/2, ...
@@ -195,17 +195,17 @@ end
 MrkSz=16;
 LnWdth=2;
 plot(0:max_sections,eyeopeningpen(U_hyb,a0,Nb,samples,f,BoptRX,Be),...
-’-o’,’LineWidth’,LnWdth,’MarkerSize’,MrkSz)
+'-o','LineWidth',LnWdth,'MarkerSize',MrkSz)
 hold on
 plot(0:max_sections,eyeopeningpen(U_pos,a0,Nb,samples,f,BoptRX,Be),...
-’:sr’,’LineWidth’,LnWdth,’MarkerSize’,MrkSz)
+':sr','LineWidth',LnWdth,'MarkerSize',MrkSz)
 plot(0:max_sections,eyeopeningpen(U_pre,a0,Nb,samples,f,BoptRX,Be),...
-’--*k’,’LineWidth’,LnWdth,’MarkerSize’,MrkSz)
-legend(’Hybrid Compensation’,’Post-Compensation’,’Pre-Compensation’,2);
-set(gca,’linewidth’,3,’fontsize’,26);
-xlabel(’Sections’,’FontSize’,30);
-set(gca,’XTick’,0:2:max_sections)
-ylabel(’Eye Opening Penalty [dB]’,’FontSize’,30);
-title(sprintf(’RZ-OOK %gGbit/s’,Rb/1e9),’FontSize’,30);
+'--*k','LineWidth',LnWdth,'MarkerSize',MrkSz)
+legend('Hybrid Compensation','Post-Compensation','Pre-Compensation',0);
+set(gca,'linewidth',3,'fontsize',26);
+xlabel('Sections','FontSize',30);
+set(gca,'XTick',0:2:max_sections)
+ylabel('Eye Opening Penalty [dB]','FontSize',30);
+title(sprintf('RZ-OOK %gGbit/s',Rb/1e9),'FontSize',30);
 grid on;
 etime(clock,tempo)

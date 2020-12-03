@@ -52,7 +52,7 @@ stepsize(index)=L;
 % 1 - One Gaussian pulse
 % 2 - Soliton interaction (Two pulses)
 % 3 - Soliton interaction (Two pulses with different amplitudes)
-initial_pulse=3;
+initial_pulse=0;
 switch initial_pulse
 case 0
 u0=sqrt(P0)*sech(time/Tq);
@@ -71,7 +71,7 @@ figure(1);
 plot(time/1e-12,(abs(u0).^2)/1e-3,'LineWidth',LnWdth,'MarkerSize',MrkSz);
 hold on;
 % Propagating through the fiber
-u=splitstep1(u0,L,stepsize,attenuation,beta2,omega,gama);
+u=splitstep(u0,L,stepsize,attenuation,beta2,omega,gama);
 figure(1)
 plot(time/1e-12,(abs(u).^2)/1e-3,'rx','LineWidth',LnWdth,'MarkerSize',MrkSz);
 set(gca,'linewidth',3,'fontsize',26);
@@ -82,7 +82,7 @@ u=u0;
 U=u0;
 J=L/L_step;
 for j=1:J
-u=splitstep1(u,L_step,stepsize,attenuation,beta2,omega,gama);
+u=splitstep(u,L_step,stepsize,attenuation,beta2,omega,gama);
 U=[U;u];
 end
 figure(2);
